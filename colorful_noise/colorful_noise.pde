@@ -2,7 +2,7 @@ int t;
 
 void setup()
 {
-  fullScreen();
+  size(500, 500);
   frameRate(60);
   t = 1;
 }

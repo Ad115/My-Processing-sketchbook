@@ -1,7 +1,7 @@
 import java.util.Random;
 Random generator;
 float spread = 20;
-Walker[] w = new Walker[10000];
+Walker[] w = new Walker[500];
 float size = 4;
 Histogram histogram;
 int alpha = 100;
@@ -33,7 +33,7 @@ void setup()
   {
     w[i] = new Walker();
   }
-  histogram = new Histogram(1000, 0, width, width, height/2, bg);
+  histogram = new Histogram(1000, 0, width, width, height/4, bg);
 }
 
 void draw()
@@ -56,10 +56,13 @@ void keyPressed()
     if(loop) {loop();}
     else {noLoop();}
   }
+  
   if((key=='R') || (key=='r'))
   {
     setup();
   }
+  
+  if (key == 'b' || key == 'B') { background(bg); }
 }
 
 class Walker
@@ -210,7 +213,7 @@ class Histogram
      line(0, rheight-gheight, width, rheight-gheight);
      noStroke();
    }
-   ellipse(((t) % width), rheight-gheight-(sum/nval), 3, 3);
+   ellipse(((t*0.2) % width), rheight-gheight-(sum/nval), 3, 3);
    sum = 0; nval = 0; t++;
    this.set();
  }

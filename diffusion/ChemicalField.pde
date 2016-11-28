@@ -50,25 +50,16 @@ class ChemicalField
   void step()
   { 
     // Save a snapshot of the current state
-
     saveStates();
     
     // Update the state of selected cells
     float dt = 1/timeUnit;
     for (int i=0; i<rows; i++) //<>//
-
     { for(int j=0; j<cols; j++)
       { 
         if(source[j] == i)  { site[i][j] = sourceConcentration; } // You are in the source
-
-
-
-
-
-
-
-else  {site[i][j] = previous[i][j] + delta(i, j)*dt; } // Calculate the new value
-      //site[i][j] = constrain(site[i][j], 0, sourceConcentration);
+        else  {site[i][j] = previous[i][j] + delta(i, j)*dt; } // Calculate the new value
+        //site[i][j] = constrain(site[i][j], 0, sourceConcentration);
       }
     }
   }
@@ -88,16 +79,7 @@ else  {site[i][j] = previous[i][j] + delta(i, j)*dt; } // Calculate the new valu
   
   float delta(int i, int j)
   {
-
-
-
-
-
     float D = diffusionConstant;
-
-
-
-
     float delta = D*laplacian(i, j);
     return delta;
   }
@@ -106,7 +88,6 @@ else  {site[i][j] = previous[i][j] + delta(i, j)*dt; } // Calculate the new valu
   
   float laplacian(int i, int j)
   {
-
     int jj = (j+cols); // To apply modulus operator //<>//
     float local = previous[i][j];
     
@@ -115,7 +96,7 @@ else  {site[i][j] = previous[i][j] + delta(i, j)*dt; } // Calculate the new valu
     if (i-1 >= 0) 
       {  differential += (previous[i-1][j] - local); } // Check if you are not in the top of the screen
     if (i+1 < rows) 
-      { differential += (previous[i+1][j] - local);} // Check if you are not in the bottom of the screen
+      { differential += (previous[i+1][j] - local); } // Check if you are not in the bottom of the screen
       
     float h = cellSize / lengthUnit;
     float laplacian = differential / (h*h);
@@ -139,10 +120,9 @@ else  {site[i][j] = previous[i][j] + delta(i, j)*dt; } // Calculate the new valu
   
   void draw()
   {  
-
     noStroke();
-
     rectMode(CENTER);
+    
     for (int i=0; i<rows; i++)
     { for (int j=0; j<cols; j++)
       { //Draw the cell

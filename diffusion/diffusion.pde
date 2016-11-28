@@ -29,14 +29,11 @@ void setup()
 
 void draw()
 { 
-  if (!paused)
-  { background(255); 
+  background(255);
+  if (!paused)  { field.step(); } //<>//
+  field.draw();
     
-    field.step();  //<>//
-    field.draw();
-    
-    displayFrameRate();
-  }
+  displayFrameRate();
 }
 
 // ******************************************************************************
@@ -51,10 +48,13 @@ void keyPressed()
   // To step the simulation whilst paused
   if (key == 's' || key == 'S')
   { background(255);
-    
     field.step();
     field.draw();
   }
+  
+  // To reset the simulation
+  if (key == 'r' || key == 'R')
+    { setup(); }
 }
 
 void displayFrameRate()
@@ -66,3 +66,4 @@ void displayFrameRate()
   rect(0, 0, textWidth(text)+10, 30);
   fill(0);
   text(text, 10, 24);
+}

@@ -1,4 +1,4 @@
-int n = 50;
+int n = 100;
 int[] x = new int[n];
 int[] y = new int[n];
 int indexPosition=0;

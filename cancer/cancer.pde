@@ -1,3 +1,5 @@
+//INCOMPLETE
+
 CellularAutomaton life;
 float cellSize = 2;
 float seedProbability = 0.5;

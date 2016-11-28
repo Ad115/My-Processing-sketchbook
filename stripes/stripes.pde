@@ -1,4 +1,4 @@
-float w, sx, sy, n = 10;
+float w, sx, sy, n = 100;
 
 void setup()
 {
