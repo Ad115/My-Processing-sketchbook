@@ -20,7 +20,7 @@ balls = Movers(n_movers, maxMass, maxVelocity)
 history = History(balls, longRun = True)
 
 def setup():
-    fullScreen()
+    fullScreen(P2D)
     background(255)
     balls.randomizePosition(width, height)
     history.saveSimulation(balls, connectedness, steps=1000)
