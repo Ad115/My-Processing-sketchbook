@@ -2,7 +2,7 @@ float[] rx, ry;
 float[] vx, vy;
 float[] fx, fy;
 int lx, ly;
-int size = 4*10;
+int size = 1*10;
 int nat = 100;
 float sigma = size, eps = 100;
 float v0 = 0.1;
@@ -50,9 +50,13 @@ void initPositions() {
       ry[i] = random(ly); 
       
       // check for validity
+      float dx, dy, r;
       boolean valid = true;
       for (int j=0; j<i; j++){
-        if ( dist(rx[i], ry[i], rx[j], ry[j]) < sigma) {
+        dx = minDist(rx[i], rx[j], lx);
+        dy = minDist(ry[i], ry[j], ly);
+        r = sqrt(dx*dx + dy*dy);
+        if ( r < sigma) {
           valid = false;
           break;
         }

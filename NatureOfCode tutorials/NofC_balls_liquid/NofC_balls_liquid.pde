@@ -2,7 +2,7 @@ Balls balls;
 Liquid liquid;
 Something something;
 float viscosity = 1;
-int n_balls = 500;
+int n_balls = 100;
 float r = 20;
 boolean background = true;
 boolean paused = false;

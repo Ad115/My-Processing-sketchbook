@@ -1,39 +1,24 @@
 int bg;
 int size = 10;
-int[] mutations = new int[1000];
+Distribution distribution = new Distribution(1000);
+int[] freqDist;
 
 void setup(){
   fullScreen();
   bg = int(random(255));
   background(bg);
+  
+  
 }
 
 void draw() {
   background(bg);
-  update();
-  int[] dist = assembleFreqDistribution(mutations);
-  drawDistribution(dist);
+  distribution.experiment(int( 500*noise(0.01*frameCount) ));
+  assembleFreqDistribution(mutations, freqDist);
+  drawDistribution(mutations, 200, 0, 0, 255);
+  drawDistribution(freqDist, 0, 0, 200, 100);
 }
 
-void update(){
-  mutations[ int(random(mutations.length)) ]++;
-}
-
-void drawDistribution(int[] mutations) {
-  fill( (bg+255/2) % 255 );
-  int n = mutations.length;
-  int w = width/n;
-  for (int i=0; i<n; i++){
-    rect(i*w, height*0.8-mutations[i], w, mutations[i]);
-  }
-}
-
-int[] assembleFreqDistribution(int [] mutations) {
-  int n = width/size;
-  int[] distribution = new int[n];
-  for(int value : mutations) {
-    if (value < n)
-      distribution[value]++;
-  }
-  return distribution;
+int ccolor(int c) {
+  return (c + 255/2) % 255;
 }
