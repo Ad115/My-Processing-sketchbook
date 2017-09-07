@@ -2,14 +2,15 @@ CellularAutomaton life;
 float cellSize = 5;
 float seedProbability = 0.5;
 float noiseRate = 0.3;
-boolean pause, drawing; // If the user has paused the program or is drawing
+boolean pause, drawing, draw_bg; // If the user has paused the program or is drawing
 
 void setup()
 { fullScreen();
   frameRate(30);
   life = new CellularAutomaton(cellSize, seedProbability);
   life.draw();
-  pause = false; drawing = false;
+  pause = false; drawing = false; draw_bg=false;
+  background(0);
 }
 
 void draw()
@@ -34,6 +35,7 @@ void keyPressed()
   if (key == 'c')  {  life.clear(); }
   
   if (key == 'f')  {  frameRate(30); }
+  if (key == 'b')  {  draw_bg = !draw_bg; }
 }
 
 void mousePressed()  {  drawing = true; }

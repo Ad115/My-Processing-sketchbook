@@ -14,7 +14,7 @@ import gifAnimation.*;
 
 GifMaker gifExport;
 int frames = 0;
-int totalFrames = int(TAU/beatRate);
+int totalFrames = int(2*TAU/beatRate);
 // GIF<========================
 
 

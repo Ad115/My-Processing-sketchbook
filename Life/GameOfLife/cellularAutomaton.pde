@@ -28,10 +28,11 @@ class CellularAutomaton
   
   void draw()
   {
-    background(0);
-    //rectMode(CENTER);
-    ellipseMode(CENTER);
-    fill(255, 200);
+    if (draw_bg) {
+      background(0);
+    }
+    rectMode(CENTER);
+    colorMode(HSB);
     noStroke();
     for (int i=0; i<rows; i++)
     {
@@ -45,13 +46,13 @@ class CellularAutomaton
           
           if(!drawing)
           {
-            x += cellSize/2*random(1);
-            y += cellSize/2*random(1);
+            x += cellSize*noise((i+100*j)*frameCount*0.00005);
+            y += cellSize*noise((i+100*j)*frameCount*0.00005 + 1000);
           }
           
-          // Draw cell
-          ellipse(x, y, cellSize, cellSize);  
-          //rect(x, y, cellSize, cellSize);
+          // Draw cell 
+          fill(cell[i][j].birthTime() % 255, 255, 255);
+          rect(x, y, cellSize, cellSize);
         }
       }
       
@@ -149,17 +150,22 @@ class CellularAutomaton
 class Cell
 {
   boolean state;
+  int birth_time;
   
   Cell(float seedProbability, int i, int j)
   {
     float s = noise(noiseRate*i, noiseRate*j);
     if(s < seedProbability) {this.Live();}
     else    {this.Die();}
+    
+    birth_time=0;
   }
   
-  void Live()  {state = true;}
+  void Live()  {state = true; birth_time=frameCount;}
   
   void Die()  {state = false;}
   
   boolean isAlive()  {return state;}
+  
+  int birthTime() {return birth_time;}
 }
