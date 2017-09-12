@@ -1,5 +1,8 @@
+# Processing only folders
 libraries
 tools
 examples
 templates
 modes
+# Compiled files
+**/*.py.class
